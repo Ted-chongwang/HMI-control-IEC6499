@@ -1,0 +1,124 @@
+
+@article{rohat2014web,
+  title={Web System for the Remote Control and Execution of an IEC 61499 Application},
+  author={Rohat, Oana and Popescu, Dan},
+  journal={Studies in Informatics and Control (SIC)},
+  volume={23},
+  number={3},
+  pages={297--306},
+  year={2014}
+}
+@inproceedings{rohat2014remote,
+  title={Remote web-based execution of IEC 61499 function blocks},
+  author={Rohat, Oana and Popescu, Dan},
+  booktitle={Proceedings of the 2014 6th International Conference on Electronics, Computers and Artificial Intelligence (ECAI)},
+  pages={33--38},
+  year={2014},
+  organization={IEEE}
+}
+@inproceedings{demin2015iec,
+  title={IEC 61499 distributed control enhanced with cloud-based web-services},
+  author={Demin, Evgenii and Patil, Sandeep and Dubinin, Victor and Vyatkin, Valeriy},
+  booktitle={2015 IEEE 10th Conference on Industrial Electronics and Applications (ICIEA)},
+  pages={972--977},
+  year={2015},
+  organization={IEEE}
+}
+@inproceedings{kadera2015applying,
+  title={Applying performance analysis concepts for event-based industrial automation systems},
+  author={Kadera, Petr and Vrba, Pavel and Biffl, Stefan and Andr{\'e}n, Filip and Strasser, Thomas},
+  booktitle={2015 IEEE International Conference on Industrial Technology (ICIT)},
+  pages={2970--2975},
+  year={2015},
+  organization={IEEE}
+}
+@inproceedings{zhabelova2013smart,
+  title={Smart Grid applications with IEC 61499 reference architecture},
+  author={Zhabelova, Gulnara and Patil, Sandeep and Yang, Chen-wei and Vyatkin, Valeriy},
+  booktitle={2013 11th IEEE International Conference on Industrial Informatics (INDIN)},
+  pages={458--463},
+  year={2013},
+  organization={IEEE}
+}
+@inproceedings{yang2013towards,
+  title={Towards implementation of Plug-and-Play and distributed HMI for the FREEDM system with IEC 61499},
+  author={Yang, Chen-Wei and Yan, Jeffrey and Vyatkin, Valeriy},
+  booktitle={IECON 2013-39th Annual Conference of the IEEE Industrial Electronics Society},
+  pages={5347--5353},
+  year={2013},
+  organization={IEEE}
+}
+@inproceedings{chenaru2015open,
+  title={Open cloud solution for integrating advanced process control in plant operation},
+  author={Chenaru, Oana and Stanciu, Alexandru and Popescu, Dan and Sima, Vasile and Florea, Gheorghe and Dobrescu, Radu},
+  booktitle={2015 23rd Mediterranean Conference on Control and Automation (MED)},
+  pages={973--978},
+  year={2015},
+  organization={IEEE}
+}
+@inproceedings{yan2013extension,
+  title={Extension of reconfigurability provisions in IEC 61499},
+  author={Yan, Jeffrey and Vyatkin, Valeriy},
+  booktitle={2013 IEEE 18th Conference on Emerging Technologies \& Factory Automation (ETFA)},
+  pages={1--7},
+  year={2013},
+  organization={IEEE}
+}
+@inproceedings{nunez2019web,
+  title={Web-Platform for Developing Man-Machine Interfaces Based on OPC UA},
+  author={Nu{\~n}ez, Alex V and Encalada, Patricio and Garcia, Carlos A and Guilcapi, Jaime R and Garcia, Marcelo V},
+  booktitle={2019 IEEE Fourth Ecuador Technical Chapters Meeting (ETCM)},
+  pages={1--6},
+  year={2019},
+  organization={IEEE}
+}
+@inproceedings{hopsu2019portability,
+  title={On Portability of IEC 61499 Compliant Structures and Systems},
+  author={Hopsu, Alexander and Atmojo, Udayanto Dwi and Vyatkin, Valeriy},
+  booktitle={2019 IEEE 28th International Symposium on Industrial Electronics (ISIE)},
+  pages={1306--1311},
+  year={2019},
+  organization={IEEE}
+}
+@inproceedings{wenger2016remote,
+  title={Remote monitoring infrastructure for IEC 61499 based control software},
+  author={Wenger, Monika and Zoitl, Alois and Blech, Jan Olaf and Peake, Ian},
+  booktitle={2016 8th International Congress on Ultra Modern Telecommunications and Control Systems and Workshops (ICUMT)},
+  pages={369--374},
+  year={2016},
+  organization={IEEE}
+}
+@inproceedings{voinov2017automatic,
+  title={Automatic generation of function block systems implementing HMI for energy distribution automation},
+  author={Voinov, Artem and Yang, Chen-Wei and Vyatkin, Valeriy},
+  booktitle={2017 IEEE 15th International Conference on Industrial Informatics (INDIN)},
+  pages={706--713},
+  year={2017},
+  organization={IEEE}
+}
+@inproceedings{sierla2014security,
+  title={Security risk analysis for smart grid automation},
+  author={Sierla, Seppo and Hurkala, Marcin and Charitoudi, Konstantinia and Yang, Chen-Wei and Vyatkin, Valeriy},
+  booktitle={2014 IEEE 23rd International Symposium on Industrial Electronics (ISIE)},
+  pages={1737--1744},
+  year={2014},
+  organization={IEEE}
+}
+@inproceedings{leitao2015standardization,
+  title={Standardization in cyber-physical systems: The ARUM case},
+  author={Leit{\~a}o, Paulo and Barbosa, Jos{\'e} and Papadopoulou, Maria-Eleftheria Ch and Venieris, Iakovos S},
+  booktitle={2015 IEEE International Conference on Industrial Technology (ICIT)},
+  pages={2988--2993},
+  year={2015},
+  organization={IEEE}
+}
+@article{yang2013model,
+  title={Model-driven development of control software for distributed automation: a survey and an approach},
+  author={Yang, Chia-Han and Vyatkin, Valeriy and Pang, Cheng},
+  journal={IEEE Transactions on Systems, Man, and Cybernetics: Systems},
+  volume={44},
+  number={3},
+  pages={292--305},
+  year={2013},
+  publisher={IEEE}
+}
