@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="Z_CONTROLLER" Comment="Basic FB with empty ECC">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="chong" Date="2020-10-18">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="INIT" Type="Event" Comment="">
+			</Event>
+			<Event Name="TEMP_CHANGED" Type="Event" Comment="">
+			</Event>
+			<Event Name="CMD_UP" Type="Event" Comment="">
+			</Event>
+			<Event Name="CMD_DOWN" Type="Event" Comment="">
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="CNF_TEMP" Type="Event" Comment="">
+			</Event>
+			<Event Name="CNF_SET_TEMP" Type="Event" Comment="">
+			</Event>
+		</EventOutputs>
+		<InputVars>
+			<VarDeclaration Name="TEMP" Type="UINT" Comment=""/>
+		</InputVars>
+		<OutputVars>
+			<VarDeclaration Name="ZONE_TEMP" Type="UINT" Comment=""/>
+			<VarDeclaration Name="SET_ZONE" Type="UINT" Comment=""/>
+		</OutputVars>
+	</InterfaceList>
+	<BasicFB>
+		<ECC>
+			<ECState Name="START" Comment="Initial State" x="550.0" y="425.0">
+			</ECState>
+		</ECC>
+	</BasicFB>
+</FBType>

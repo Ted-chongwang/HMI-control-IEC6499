@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="Z_TEMPERATURE" Comment="Basic FB with empty ECC">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="chong" Date="2020-10-20">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="REO" Type="Event" Comment="">
+			</Event>
+			<Event Name="SAMPLE" Type="Event" Comment="">
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="CNF_TEMP" Type="Event" Comment="">
+			</Event>
+		</EventOutputs>
+		<InputVars>
+			<VarDeclaration Name="ADDRESS" Type="WSTRING" Comment=""/>
+			<VarDeclaration Name="PORT" Type="WSTRING" Comment=""/>
+			<VarDeclaration Name="ZONE" Type="WSTRING" Comment=""/>
+		</InputVars>
+		<OutputVars>
+			<VarDeclaration Name="TEMP" Type="UINT" Comment=""/>
+		</OutputVars>
+	</InterfaceList>
+	<BasicFB>
+		<InternalVars>
+			<VarDeclaration Name="INTERNALVAR1" Type="BOOL" Comment="Internal Variable" InitialValue=""/>
+			<VarDeclaration Name="INTERNALVAR2" Type="BOOL" Comment="Internal Variable" InitialValue=""/>
+		</InternalVars>
+		<ECC>
+			<ECState Name="START" Comment="Initial State" x="550.0" y="425.0">
+			</ECState>
+			<ECTransition Source="START" Destination="START" Condition="1" Comment="" x="612.5" y="737.5"/>
+		</ECC>
+		<Algorithm Name="ALG1" Comment="New Algorithm">
+			<ST><![CDATA[]]></ST>
+		</Algorithm>
+		<Algorithm Name="ALG2" Comment="New Algorithm">
+			<ST><![CDATA[]]></ST>
+		</Algorithm>
+		<Algorithm Name="ALG3" Comment="New Algorithm">
+			<ST><![CDATA[]]></ST>
+		</Algorithm>
+	</BasicFB>
+	<Service RightInterface="right interface" LeftInterface="left interface" Comment="Basic FB with empty ECC">
+		<ServiceSequence Name="Service Sequence" Comment="">
+			<ServiceTransaction>
+				<InputPrimitive Interface="left interface" Event="INIT"/>
+			</ServiceTransaction>
+			<ServiceTransaction>
+				<OutputPrimitive Interface="left interface" Event="INITO"/>
+				<OutputPrimitive Interface="right interface" Event="INITO"/>
+			</ServiceTransaction>
+		</ServiceSequence>
+	</Service>
+</FBType>

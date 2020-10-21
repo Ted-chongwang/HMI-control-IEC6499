@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="CLRecv" Comment="Basic FB with empty ECC">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="chong" Date="2020-10-21">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="INIT" Type="Event" Comment="">
+			</Event>
+			<Event Name="REQ" Type="Event" Comment="">
+				<With Var="DATA"/>
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="INITO" Type="Event" Comment="">
+			</Event>
+			<Event Name="CNF" Type="Event" Comment="">
+				<With Var="DATAO"/>
+			</Event>
+		</EventOutputs>
+		<InputVars>
+			<VarDeclaration Name="ID" Type="TIME" Comment=""/>
+			<VarDeclaration Name="Keysize" Type="UINT" Comment=""/>
+			<VarDeclaration Name="Rekey" Type="UINT" Comment=""/>
+			<VarDeclaration Name="DATA" Type="UINT" Comment=""/>
+		</InputVars>
+		<OutputVars>
+			<VarDeclaration Name="DATAO" Type="UINT" Comment=""/>
+		</OutputVars>
+	</InterfaceList>
+	<BasicFB>
+		<ECC>
+			<ECState Name="START" Comment="Initial State" x="550.0" y="425.0">
+			</ECState>
+		</ECC>
+	</BasicFB>
+</FBType>

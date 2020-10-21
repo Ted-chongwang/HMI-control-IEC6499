@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="F_TO_C_CONV" Comment="Basic FB with empty ECC">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="chong" Date="2020-10-20">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="REQ" Type="Event" Comment="">
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="CNF" Type="Event" Comment="">
+			</Event>
+		</EventOutputs>
+		<InputVars>
+			<VarDeclaration Name="IN" Type="UINT" Comment=""/>
+		</InputVars>
+		<OutputVars>
+			<VarDeclaration Name="OUT" Type="UINT" Comment=""/>
+			<VarDeclaration Name="ERROR" Type="ANY" Comment=""/>
+		</OutputVars>
+	</InterfaceList>
+	<BasicFB>
+		<ECC>
+			<ECState Name="START" Comment="Initial State" x="550.0" y="425.0">
+			</ECState>
+		</ECC>
+	</BasicFB>
+</FBType>

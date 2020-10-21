@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FBType Name="FBs" Comment="Basic FB with empty ECC">
+	<Identification Standard="61499-2">
+	</Identification>
+	<VersionInfo Version="1.0" Author="chong" Date="2020-10-21">
+	</VersionInfo>
+	<InterfaceList>
+		<EventInputs>
+			<Event Name="Event_0" Type="Event" Comment="">
+				<With Var="DATA_IN_1"/>
+				<With Var="DATA_IN_4"/>
+			</Event>
+			<Event Name="Event_1" Type="Event" Comment="">
+				<With Var="DATA_IN_3"/>
+				<With Var="DATA_IN_2"/>
+				<With Var="DATA_IN_5"/>
+			</Event>
+			<Event Name="Event_2" Type="Event" Comment="">
+			</Event>
+		</EventInputs>
+		<EventOutputs>
+			<Event Name="Event_3" Type="Event" Comment="">
+				<With Var="DATA_OUT_1"/>
+				<With Var="DATA_OUT_2"/>
+				<With Var="DATA_OUT_3"/>
+			</Event>
+			<Event Name="Event_4" Type="Event" Comment="">
+			</Event>
+			<Event Name="Event_5" Type="Event" Comment="">
+			</Event>
+			<Event Name="Event_6" Type="Event" Comment="">
+			</Event>
+		</EventOutputs>
+		<InputVars>
+			<VarDeclaration Name="DATA_IN_1" Type="UINT" Comment=""/>
+			<VarDeclaration Name="DATA_IN_2" Type="UINT" Comment=""/>
+			<VarDeclaration Name="DATA_IN_3" Type="UINT" Comment=""/>
+			<VarDeclaration Name="DATA_IN_4" Type="UINT" Comment=""/>
+			<VarDeclaration Name="DATA_IN_5" Type="UINT" Comment=""/>
+		</InputVars>
+		<OutputVars>
+			<VarDeclaration Name="DATA_OUT_1" Type="UINT" Comment=""/>
+			<VarDeclaration Name="DATA_OUT_2" Type="UINT" Comment=""/>
+			<VarDeclaration Name="DATA_OUT_3" Type="UINT" Comment=""/>
+		</OutputVars>
+	</InterfaceList>
+	<BasicFB>
+		<ECC>
+			<ECState Name="START" Comment="Initial State" x="550.0" y="425.0">
+			</ECState>
+		</ECC>
+	</BasicFB>
+</FBType>
