@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<System Name="HMIcontrolHVAC" Comment="">
+	<Identification>
+	</Identification>
+	<VersionInfo Version="1.0" Author="chong" Date="2020-10-18">
+	</VersionInfo>
+	<Application Name="hvacApp" Comment="">
+		<SubAppNetwork>
+			<FB Name="Z_TEMPERATURE" Type="Z_TEMPERATURE" Comment="" x="2500.0" y="375.0">
+				<Parameter Name="ADDRESS" Value="127.0.0.1"/>
+				<Parameter Name="PORT" Value="62501"/>
+				<Parameter Name="ZONE" Value="1"/>
+			</FB>
+			<FB Name="F_TO_C_CONV" Type="F_TO_C_CONV" Comment="" x="3750.0" y="375.0">
+			</FB>
+			<FB Name="Z_CONTROLLER" Type="Z_CONTROLLER" Comment="" x="5000.0" y="375.0">
+			</FB>
+			<FB Name="DECODING_AND_DISTRIBUTION" Type="DECODING_AND_DISTRIBUTION" Comment="" x="3250.0" y="1625.0">
+			</FB>
+			<FB Name="CLRecv" Type="CLRecv" Comment="" x="2250.0" y="1375.0">
+				<Parameter Name="ID" Value="127.0.0.1:62501"/>
+				<Parameter Name="Keysize" Value="128"/>
+				<Parameter Name="Rekey" Value="T#600s"/>
+			</FB>
+			<FB Name="AGGREGATING_AND_ENCODING" Type="AGGREGATING_AND_ENCODING" Comment="" x="6750.0" y="1500.0">
+			</FB>
+			<FB Name="CLSender" Type="CLSender" Comment="" x="8875.0" y="1375.0">
+				<Parameter Name="ID" Value="127.0.0.1:62501"/>
+				<Parameter Name="Keysize" Value="128"/>
+				<Parameter Name="Rekey" Value="T#600s"/>
+			</FB>
+			<FB Name="Echo_Waiting_Clock" Type="E_CYCLE" Comment="" x="3000.0" y="2625.0">
+				<Parameter Name="DT" Value="T#1s"/>
+			</FB>
+			<FB Name="Ping_Send_Clock" Type="E_CYCLE" Comment="" x="6375.0" y="2750.0">
+				<Parameter Name="DT" Value="T#1s"/>
+			</FB>
+			<FB Name="E_CTD" Type="E_CTD" Comment="" x="4143.75" y="2700.0">
+				<Parameter Name="PV" Value="1"/>
+			</FB>
+			<FB Name="Echo_Receiver" Type="E_PERMIT" Comment="" x="3268.75" y="3325.0">
+			</FB>
+			<FB Name="RECONNECTION" Type="E_PERMIT" Comment="" x="5250.0" y="3750.0">
+			</FB>
+			<FB Name="PUBLISH" Type="PUBLISH_2" Comment="" x="10625.0" y="1375.0">
+				<Parameter Name="QI" Value="1"/>
+				<Parameter Name="ID" Value="127.0.0.1:62501"/>
+			</FB>
+			<FB Name="SUBSCRIBE" Type="SUBSCRIBE_2" Comment="" x="500.0" y="1375.0">
+				<Parameter Name="QI" Value="1"/>
+				<Parameter Name="ID" Value="127.0.0.1:62501"/>
+			</FB>
+			<FB Name="PUBLISH_DISCONNECT" Type="ST_SET_PARM" Comment="" x="6375.0" y="4375.0">
+				<Parameter Name="QI" Value="1"/>
+				<Parameter Name="ELEM_NAME" Value="PUBLISH"/>
+				<Parameter Name="ELEM_DATA_IN" Value="QI"/>
+				<Parameter Name="PARM_VAL" Value="0"/>
+			</FB>
+			<FB Name="PUBLISH_CONNECT" Type="ST_SET_PARM" Comment="" x="7875.0" y="4625.0">
+				<Parameter Name="QI" Value="1"/>
+				<Parameter Name="ELEM_NAME" Value="PUBLISH"/>
+				<Parameter Name="ELEM_DATA_IN" Value="QI"/>
+				<Parameter Name="PARM_VAL" Value="1"/>
+			</FB>
+			<FB Name="SUNSCRIBE_DISCONNECT" Type="ST_SET_PARM" Comment="" x="2875.0" y="4375.0">
+				<Parameter Name="QI" Value="1"/>
+				<Parameter Name="ELEM_NAME" Value="SUBSCRIBE"/>
+				<Parameter Name="ELEM_DATA_IN" Value="QI"/>
+				<Parameter Name="PARM_VAL" Value="0"/>
+			</FB>
+			<FB Name="SUBSCRIBE_CONNECT" Type="ST_SET_PARM" Comment="" x="1000.0" y="4500.0">
+				<Parameter Name="QI" Value="1"/>
+				<Parameter Name="ELEM_NAME" Value="SUBSCRIBE"/>
+				<Parameter Name="ELEM_DATA_IN" Value="QI"/>
+				<Parameter Name="PARM_VAL" Value="O"/>
+			</FB>
+			<FB Name="E_SR" Type="E_SR" Comment="" x="7500.0" y="2750.0">
+			</FB>
+			<EventConnections>
+				<Connection Source="Z_TEMPERATURE.CNF_TEMP" Destination="F_TO_C_CONV.REQ" Comment=""/>
+				<Connection Source="F_TO_C_CONV.CNF" Destination="Z_CONTROLLER.TEMP_CHANGED" Comment="" dx1="275.0"/>
+				<Connection Source="DECODING_AND_DISTRIBUTION.CNF_CMD_UP" Destination="Z_CONTROLLER.CMD_UP" Comment="" dx1="175.0"/>
+				<Connection Source="DECODING_AND_DISTRIBUTION.CNF_SET_TEMP" Destination="Z_CONTROLLER.CMD_DOWN" Comment="" dx1="218.75"/>
+				<Connection Source="CLRecv.CNF" Destination="DECODING_AND_DISTRIBUTION.REQ" Comment="" dx1="206.25"/>
+				<Connection Source="Z_CONTROLLER.CNF_SET_TEMP" Destination="AGGREGATING_AND_ENCODING.SHOW_SET_TEMP" Comment="" dx1="206.25"/>
+				<Connection Source="Z_CONTROLLER.CNF_TEMP" Destination="AGGREGATING_AND_ENCODING.SHOW_TEMP" Comment="" dx1="318.75"/>
+				<Connection Source="AGGREGATING_AND_ENCODING.CNF" Destination="CLSender.REQ" Comment="" dx1="75.0"/>
+				<Connection Source="E_CTD.CDO" Destination="RECONNECTION.EI" Comment="" dx1="518.75"/>
+				<Connection Source="Echo_Waiting_Clock.EO" Destination="E_CTD.CD" Comment="" dx1="106.25"/>
+				<Connection Source="Echo_Receiver.EO" Destination="E_CTD.LD" Comment="" dx1="162.5"/>
+				<Connection Source="CLSender.CNF" Destination="PUBLISH.REQ" Comment=""/>
+				<Connection Source="SUBSCRIBE.IND" Destination="Echo_Receiver.EI" Comment="" dx1="175.0"/>
+				<Connection Source="SUBSCRIBE.IND" Destination="CLRecv.REQ" Comment=""/>
+				<Connection Source="RECONNECTION.EO" Destination="PUBLISH_DISCONNECT.REQ" Comment="" dx1="275.0"/>
+				<Connection Source="PUBLISH_DISCONNECT.CNF" Destination="PUBLISH.INIT" Comment="" dx1="2337.5"/>
+				<Connection Source="PUBLISH_DISCONNECT.CNF" Destination="PUBLISH_CONNECT.REQ" Comment="" dx1="181.25"/>
+				<Connection Source="PUBLISH_CONNECT.CNF" Destination="PUBLISH.INIT" Comment="" dx1="906.25"/>
+				<Connection Source="RECONNECTION.EO" Destination="SUNSCRIBE_DISCONNECT.REQ" Comment="" dx1="75.0" dx2="75.0" dy="375.0"/>
+				<Connection Source="SUNSCRIBE_DISCONNECT.CNF" Destination="SUBSCRIBE.INIT" Comment="" dx1="75.0" dx2="787.5" dy="1150.0"/>
+				<Connection Source="SUNSCRIBE_DISCONNECT.CNF" Destination="SUBSCRIBE_CONNECT.REQ" Comment="" dx1="75.0" dx2="575.0" dy="1062.5"/>
+				<Connection Source="SUBSCRIBE_CONNECT.CNF" Destination="SUBSCRIBE.INIT" Comment="" dx1="75.0" dx2="762.5" dy="-287.5"/>
+				<Connection Source="Ping_Send_Clock.EO" Destination="E_SR.S" Comment=""/>
+				<Connection Source="E_SR.EO" Destination="PUBLISH.INIT" Comment="" dx1="1825.0"/>
+			</EventConnections>
+			<DataConnections>
+				<Connection Source="Z_TEMPERATURE.TEMP" Destination="F_TO_C_CONV.IN" Comment="" dx1="212.5"/>
+				<Connection Source="F_TO_C_CONV.OUT" Destination="Z_CONTROLLER.TEMP" Comment="" dx1="275.0"/>
+				<Connection Source="CLRecv.DATAO" Destination="DECODING_AND_DISTRIBUTION.MASSAGE" Comment="" dx1="206.25"/>
+				<Connection Source="Z_CONTROLLER.SET_ZONE" Destination="AGGREGATING_AND_ENCODING.SET_TEMP" Comment="" dx1="87.5"/>
+				<Connection Source="Z_CONTROLLER.ZONE_TEMP" Destination="AGGREGATING_AND_ENCODING.TEMP" Comment="" dx1="143.75"/>
+				<Connection Source="AGGREGATING_AND_ENCODING.DATA" Destination="CLSender.DATA" Comment="" dx1="75.0"/>
+				<Connection Source="E_CTD.Q" Destination="RECONNECTION.PERMIT" Comment="" dx1="281.25"/>
+				<Connection Source="CLSender.DATAO" Destination="PUBLISH.SD_1" Comment="" dx1="200.0"/>
+				<Connection Source="SUBSCRIBE.RD_2" Destination="Echo_Receiver.PERMIT" Comment="" dx1="75.0"/>
+				<Connection Source="SUBSCRIBE.RD_1" Destination="CLRecv.DATA" Comment="" dx1="525.0"/>
+				<Connection Source="E_SR.Q" Destination="PUBLISH.SD_2" Comment="" dx1="2337.5"/>
+			</DataConnections>
+		</SubAppNetwork>
+	</Application>
+	<Device Name="FORTE_PC" Type="FORTE_PC" Comment="" x="1675.0" y="2312.5">
+		<Parameter Name="MGR_ID" Value="&quot;localhost:61499&quot;"/>
+		<Attribute Name="Profile" Type="STRING" Value="HOLOBLOC" Comment="device profile"/>
+		<Attribute Name="Color" Type="STRING" Value="255,190,111" Comment="color"/>
+		<Resource Name="EMB_RES" Type="EMB_RES" Comment="" x="0.0" y="0.0">
+			<FBNetwork>
+				<FB Name="E_CTD" Type="E_CTD" Comment="" x="4143.75" y="2700.0">
+					<Parameter Name="PV" Value="1"/>
+				</FB>
+				<FB Name="Echo_Waiting_Clock" Type="E_CYCLE" Comment="" x="3000.0" y="2625.0">
+					<Parameter Name="DT" Value="T#1s"/>
+				</FB>
+				<FB Name="DECODING_AND_DISTRIBUTION" Type="DECODING_AND_DISTRIBUTION" Comment="" x="3250.0" y="1625.0">
+				</FB>
+				<FB Name="PUBLISH_DISCONNECT" Type="ST_SET_PARM" Comment="" x="6375.0" y="4375.0">
+					<Parameter Name="QI" Value="1"/>
+					<Parameter Name="ELEM_NAME" Value="PUBLISH"/>
+					<Parameter Name="ELEM_DATA_IN" Value="QI"/>
+					<Parameter Name="PARM_VAL" Value="0"/>
+				</FB>
+				<FB Name="F_TO_C_CONV" Type="F_TO_C_CONV" Comment="" x="3750.0" y="375.0">
+				</FB>
+				<FB Name="AGGREGATING_AND_ENCODING" Type="AGGREGATING_AND_ENCODING" Comment="" x="6750.0" y="1500.0">
+				</FB>
+				<FB Name="Ping_Send_Clock" Type="E_CYCLE" Comment="" x="6375.0" y="2750.0">
+					<Parameter Name="DT" Value="T#1s"/>
+				</FB>
+				<FB Name="Z_CONTROLLER" Type="Z_CONTROLLER" Comment="" x="5000.0" y="375.0">
+				</FB>
+				<FB Name="CLSender" Type="CLSender" Comment="" x="8875.0" y="1375.0">
+					<Parameter Name="ID" Value="127.0.0.1:62501"/>
+					<Parameter Name="Keysize" Value="128"/>
+					<Parameter Name="Rekey" Value="T#600s"/>
+				</FB>
+				<FB Name="SUBSCRIBE" Type="SUBSCRIBE_2" Comment="" x="500.0" y="1375.0">
+					<Parameter Name="QI" Value="1"/>
+					<Parameter Name="ID" Value="127.0.0.1:62501"/>
+				</FB>
+				<FB Name="SUNSCRIBE_DISCONNECT" Type="ST_SET_PARM" Comment="" x="2875.0" y="4375.0">
+					<Parameter Name="QI" Value="1"/>
+					<Parameter Name="ELEM_NAME" Value="SUBSCRIBE"/>
+					<Parameter Name="ELEM_DATA_IN" Value="QI"/>
+					<Parameter Name="PARM_VAL" Value="0"/>
+				</FB>
+				<FB Name="SUBSCRIBE_CONNECT" Type="ST_SET_PARM" Comment="" x="1000.0" y="4500.0">
+					<Parameter Name="QI" Value="1"/>
+					<Parameter Name="ELEM_NAME" Value="SUBSCRIBE"/>
+					<Parameter Name="ELEM_DATA_IN" Value="QI"/>
+					<Parameter Name="PARM_VAL" Value="O"/>
+				</FB>
+				<FB Name="RECONNECTION" Type="E_PERMIT" Comment="" x="5250.0" y="3750.0">
+				</FB>
+				<FB Name="PUBLISH" Type="PUBLISH_2" Comment="" x="10625.0" y="1375.0">
+					<Parameter Name="QI" Value="1"/>
+					<Parameter Name="ID" Value="127.0.0.1:62501"/>
+				</FB>
+				<FB Name="CLRecv" Type="CLRecv" Comment="" x="2250.0" y="1375.0">
+					<Parameter Name="ID" Value="127.0.0.1:62501"/>
+					<Parameter Name="Keysize" Value="128"/>
+					<Parameter Name="Rekey" Value="T#600s"/>
+				</FB>
+				<FB Name="Echo_Receiver" Type="E_PERMIT" Comment="" x="3268.75" y="3325.0">
+				</FB>
+				<FB Name="PUBLISH_CONNECT" Type="ST_SET_PARM" Comment="" x="7875.0" y="4625.0">
+					<Parameter Name="QI" Value="1"/>
+					<Parameter Name="ELEM_NAME" Value="PUBLISH"/>
+					<Parameter Name="ELEM_DATA_IN" Value="QI"/>
+					<Parameter Name="PARM_VAL" Value="1"/>
+				</FB>
+				<FB Name="Z_TEMPERATURE" Type="Z_TEMPERATURE" Comment="" x="2500.0" y="375.0">
+					<Parameter Name="ADDRESS" Value="127.0.0.1"/>
+					<Parameter Name="PORT" Value="62501"/>
+					<Parameter Name="ZONE" Value="1"/>
+				</FB>
+				<FB Name="E_SR" Type="E_SR" Comment="" x="7500.0" y="2750.0">
+				</FB>
+				<EventConnections>
+					<Connection Source="Echo_Waiting_Clock.EO" Destination="E_CTD.CD" Comment=""/>
+					<Connection Source="F_TO_C_CONV.CNF" Destination="Z_CONTROLLER.TEMP_CHANGED" Comment=""/>
+					<Connection Source="DECODING_AND_DISTRIBUTION.CNF_CMD_UP" Destination="Z_CONTROLLER.CMD_UP" Comment=""/>
+					<Connection Source="DECODING_AND_DISTRIBUTION.CNF_SET_TEMP" Destination="Z_CONTROLLER.CMD_DOWN" Comment=""/>
+					<Connection Source="Z_CONTROLLER.CNF_TEMP" Destination="AGGREGATING_AND_ENCODING.SHOW_TEMP" Comment=""/>
+					<Connection Source="Z_CONTROLLER.CNF_SET_TEMP" Destination="AGGREGATING_AND_ENCODING.SHOW_SET_TEMP" Comment=""/>
+					<Connection Source="AGGREGATING_AND_ENCODING.CNF" Destination="CLSender.REQ" Comment=""/>
+					<Connection Source="SUNSCRIBE_DISCONNECT.CNF" Destination="SUBSCRIBE.INIT" Comment=""/>
+					<Connection Source="SUNSCRIBE_DISCONNECT.CNF" Destination="SUBSCRIBE_CONNECT.REQ" Comment=""/>
+					<Connection Source="SUBSCRIBE_CONNECT.CNF" Destination="SUBSCRIBE.INIT" Comment=""/>
+					<Connection Source="E_CTD.CDO" Destination="RECONNECTION.EI" Comment=""/>
+					<Connection Source="RECONNECTION.EO" Destination="PUBLISH_DISCONNECT.REQ" Comment=""/>
+					<Connection Source="RECONNECTION.EO" Destination="SUNSCRIBE_DISCONNECT.REQ" Comment=""/>
+					<Connection Source="PUBLISH_DISCONNECT.CNF" Destination="PUBLISH.INIT" Comment=""/>
+					<Connection Source="CLSender.CNF" Destination="PUBLISH.REQ" Comment=""/>
+					<Connection Source="SUBSCRIBE.IND" Destination="CLRecv.REQ" Comment=""/>
+					<Connection Source="CLRecv.CNF" Destination="DECODING_AND_DISTRIBUTION.REQ" Comment=""/>
+					<Connection Source="SUBSCRIBE.IND" Destination="Echo_Receiver.EI" Comment=""/>
+					<Connection Source="Echo_Receiver.EO" Destination="E_CTD.LD" Comment=""/>
+					<Connection Source="PUBLISH_DISCONNECT.CNF" Destination="PUBLISH_CONNECT.REQ" Comment=""/>
+					<Connection Source="PUBLISH_CONNECT.CNF" Destination="PUBLISH.INIT" Comment=""/>
+					<Connection Source="Z_TEMPERATURE.CNF_TEMP" Destination="F_TO_C_CONV.REQ" Comment=""/>
+					<Connection Source="Ping_Send_Clock.EO" Destination="E_SR.S" Comment=""/>
+					<Connection Source="E_SR.EO" Destination="PUBLISH.INIT" Comment=""/>
+				</EventConnections>
+				<DataConnections>
+					<Connection Source="F_TO_C_CONV.OUT" Destination="Z_CONTROLLER.TEMP" Comment=""/>
+					<Connection Source="Z_CONTROLLER.ZONE_TEMP" Destination="AGGREGATING_AND_ENCODING.TEMP" Comment=""/>
+					<Connection Source="Z_CONTROLLER.SET_ZONE" Destination="AGGREGATING_AND_ENCODING.SET_TEMP" Comment=""/>
+					<Connection Source="AGGREGATING_AND_ENCODING.DATA" Destination="CLSender.DATA" Comment=""/>
+					<Connection Source="E_CTD.Q" Destination="RECONNECTION.PERMIT" Comment=""/>
+					<Connection Source="CLSender.DATAO" Destination="PUBLISH.SD_1" Comment=""/>
+					<Connection Source="SUBSCRIBE.RD_1" Destination="CLRecv.DATA" Comment=""/>
+					<Connection Source="CLRecv.DATAO" Destination="DECODING_AND_DISTRIBUTION.MASSAGE" Comment=""/>
+					<Connection Source="SUBSCRIBE.RD_2" Destination="Echo_Receiver.PERMIT" Comment=""/>
+					<Connection Source="Z_TEMPERATURE.TEMP" Destination="F_TO_C_CONV.IN" Comment=""/>
+					<Connection Source="E_SR.Q" Destination="PUBLISH.SD_2" Comment=""/>
+				</DataConnections>
+			</FBNetwork>
+		</Resource>
+	</Device>
+	<Mapping From="hvacApp.E_CTD" To="FORTE_PC.EMB_RES.E_CTD"/>
+	<Mapping From="hvacApp.Echo_Waiting_Clock" To="FORTE_PC.EMB_RES.Echo_Waiting_Clock"/>
+	<Mapping From="hvacApp.DECODING_AND_DISTRIBUTION" To="FORTE_PC.EMB_RES.DECODING_AND_DISTRIBUTION"/>
+	<Mapping From="hvacApp.PUBLISH_DISCONNECT" To="FORTE_PC.EMB_RES.PUBLISH_DISCONNECT"/>
+	<Mapping From="hvacApp.F_TO_C_CONV" To="FORTE_PC.EMB_RES.F_TO_C_CONV"/>
+	<Mapping From="hvacApp.AGGREGATING_AND_ENCODING" To="FORTE_PC.EMB_RES.AGGREGATING_AND_ENCODING"/>
+	<Mapping From="hvacApp.Ping_Send_Clock" To="FORTE_PC.EMB_RES.Ping_Send_Clock"/>
+	<Mapping From="hvacApp.Z_CONTROLLER" To="FORTE_PC.EMB_RES.Z_CONTROLLER"/>
+	<Mapping From="hvacApp.CLSender" To="FORTE_PC.EMB_RES.CLSender"/>
+	<Mapping From="hvacApp.SUBSCRIBE" To="FORTE_PC.EMB_RES.SUBSCRIBE"/>
+	<Mapping From="hvacApp.SUNSCRIBE_DISCONNECT" To="FORTE_PC.EMB_RES.SUNSCRIBE_DISCONNECT"/>
+	<Mapping From="hvacApp.SUBSCRIBE_CONNECT" To="FORTE_PC.EMB_RES.SUBSCRIBE_CONNECT"/>
+	<Mapping From="hvacApp.RECONNECTION" To="FORTE_PC.EMB_RES.RECONNECTION"/>
+	<Mapping From="hvacApp.PUBLISH" To="FORTE_PC.EMB_RES.PUBLISH"/>
+	<Mapping From="hvacApp.CLRecv" To="FORTE_PC.EMB_RES.CLRecv"/>
+	<Mapping From="hvacApp.Echo_Receiver" To="FORTE_PC.EMB_RES.Echo_Receiver"/>
+	<Mapping From="hvacApp.PUBLISH_CONNECT" To="FORTE_PC.EMB_RES.PUBLISH_CONNECT"/>
+	<Mapping From="hvacApp.Z_TEMPERATURE" To="FORTE_PC.EMB_RES.Z_TEMPERATURE"/>
+	<Mapping From="hvacApp.E_SR" To="FORTE_PC.EMB_RES.E_SR"/>
+</System>
